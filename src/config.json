@@ -1,0 +1,41 @@
+{
+  "dbcredentials": {
+    "databasename": "marocvid19",
+    "usertablename": "users",
+    "contactsTablename": "contacts",
+    "uploadCodeCol": "codes",
+    "username": "",
+    "password": ""
+  },
+  "nexmoService": {
+    "apiKey": "c3a81dfa",
+    "apiSecret": "CV7GV41rp7ov733P",
+    "optiones": {
+      "brandName": "Covid19",
+      "senderId": "Marocvid19",
+      "codeLength": 6,
+      "language": "ar-xa",
+      "pinExpiry": 300,
+      "nextEventWait": 150,
+      "country": "MA",
+      "workflowId": 5
+    }
+  },
+  "tempIdConfig": {
+    "encryption": {
+      "defaultAlgorithm": "aes-256-gcm",
+      "keyPath": "encryptionKeyPath",
+      "defaultVersion": 1
+    },
+    "tempID": {
+      "validityPeriod": 0.25,
+      "refreshInterval": 12,
+      "batchSize": 100,
+      "EncryptedKey": "YiZil9mGrXO08GoP6VcPb67iBcYP+bvAXAx9xZ+9zxE="
+    },
+    "utcOffset": 0
+  },
+  "upload": {
+    "tokenValidityPeriod": 2
+  }
+}

@@ -1,0 +1,235 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="utf-8")
+        meta(http-equiv="X-UA-Compatible",content="IE=edge")
+        meta(name="viewport",content="width=device-width, initial-scale=1")
+        meta(name="description",content="Dashboard,arcking Contacts")
+        meta(name="author" ,content="fstt")
+        title Welcom In Tracking Contact Dashboard
+        //- Font
+        link(rel="stylesheet",href="https://fonts.googleapis.com/css2?family=Crimson+Text&display=swap")
+        //- icons 
+        link(rel="stylesheet", href="/fonts/simple-line-icons/simple-line-icons.min.css")
+        link(rel="stylesheet", href="/fonts/font-awesome/css/font-awesome.min.css")
+        link(rel="stylesheet", href="/fonts/material-design-icons/material-icon.css")
+        //- bootstrap 
+        link( rel="stylesheet",href="/plugins/bootstrap/css/bootstrap.min.css")
+        link( rel="stylesheet",href="/plugins/summernote/summernote.css")
+        link( rel="stylesheet",href="/plugins/material/material.min.css")
+        link( rel="stylesheet",href="/css/material_style.css")
+        link( rel="stylesheet",href="/css/pages/inbox.min.css")
+        link( rel="stylesheet",href="/css/theme/dark/theme_style.css", id="rt_style_components")
+        link( rel="stylesheet",href="/css/plugins.min.css")
+        link( rel="stylesheet",href="/css/theme/dark/style.css")
+        link( rel="stylesheet",href="/css/responsive.css")
+        //- favicon 
+        link(link rel="shortcut icon", href="/img/logo.gif")
+
+        block styles
+        
+    body.page-header-fixed.sidemenu-closed-hidelogo.page-content-white.page-md.header-white.white-sidebar-color.logo-indigo
+        div.page-wrapper
+            //-start header 
+            div.page-header.navbar.navbar-fixed-top
+                div.page-header-inner
+                    //-logo start
+                    div.page-logo
+                        a.logo-content(href="/dashboard")
+                            div.logo-img
+                                img.position-relative(style="bottom: 5px; height: 50px; width: 50px",src="/img/logo.png",alt="Logo")
+                            div.logo-text
+                                span.ml-2.top COVID-19 CORONAVIRUS
+                                span.ml-2.bas MAROC - 2021
+                                
+                    //-logo end 
+                    ul.nav.navbar-nav.navbar-left.in
+                        li
+                            a.menu-toggler.sidebar-toggler(href="#")
+                                i.icon-menu
+                    
+                    //-start mobile menu
+                    a.menu-toggler.responsive-toggler(href="javascript:;",data-toggle="collapse",data-target=".navbar-collapse")
+                        span
+                    //-end mobile menu
+                    //-start header menu
+                    div.top-menu
+                        ul.nav.navbar-nav.pull-right
+                            //-start notification dropdown
+                            li.dropdown.dropdown-extended.dropdown-notification#header_notification_bar
+                                a.dropdown-toggle( href="javascript:;",data-toggle="dropdown",data-hover="dropdown",data-close-others="true")
+                                    i.fa.fa-bell-o
+                                    span.badge.headerBadgeColor1=news
+                                ul.dropdown-menu
+                                    li.external
+                                        h3    
+                                            span.bold  Notifications
+                                        span.notification-label.purple-bgcolor=news
+                                    li
+                                        ul.dropdown-menu-list.small-slimscroll-style(data-handle-color="#637283")
+                                            if news 
+                                                each person in contacts
+                                                    if !person.status
+                                                        li
+                                                            a( href="javascript:;")
+                                                                span.time=person.createdAt.toJSON().split("T")[0]
+                                                                span.details  
+                                                                    span.notification-icon.circle.deepPink-bgcolor
+                                                                        i.fa.fa-check
+                                                                    |   News Infected Persons !.
+                                        div.dropdown-menu-footer
+                                            a( href="javascript:void(0)") All notifications
+                            //-end notification dropdown 
+                            //- start manage user dropdown
+                            li.dropdown.dropdown-user
+                                a.dropdown-toggle(href="javascript:;",data-toggle="dropdown",data-hover="dropdown",data-close-others="true")    
+                                    span.username.username-hide-on-mobile(style="text-transform:capitalize")=user.username
+                                    i.fa.fa-angle-down
+                                ul.dropdown-menu.dropdown-menu-default
+                                    li 
+                                        a#profileIcon( href=`/profile/${user.username}`)
+                                            i.icon-user 
+                                            | Profile
+                                    li.divider
+                                    li
+                                        a( href="/logout")
+                                            i.icon-logout
+                                            | Log Out
+            //-end header
+            //- start page container
+            div.page-container
+                //-start sidebar menu
+                if user.status
+                    div.sidebar-container
+                        div.sidemenu-container.navbar-collapse.collapse.fixed-menu
+                            div#remove-scroll.left-sidemenu
+                                ul.sidemenu.page-header-fixed.slimscroll-style(data-keep-expanded="false", data-auto-scroll="true",data-slide-speed="200",style="padding-top: 30px;")
+                                    li.sidebar-toggler-wrapper.hide
+                                        div.sidebar-toggler
+                                            span
+                                    li.nav-item(class=(path === '/dashboard' ? 'active' : ''))
+                                        a.nav-link.nav-toggle(href="/dashboard" )
+                                            i.material-icons home
+                                            span.title Dashboard   
+                                    li.nav-item(class=(path === '/covid_track' ? 'active' : ''))
+                                        a.nav-link.nav-toggle(href="/covid_track" )
+                                            i.material-icons group
+                                            span.title Covid-19 Tracker           
+                                    li.nav-item
+                                        a.nav-link.nav-toggle(href="#" )
+                                            i.material-icons settings
+                                            span.title Gérer les comptes
+                                            span.arrow
+                                        ul.sub-menu
+                                            li.nav-item
+                                                a.nav-link#showAll(href="javascript:void(0)")
+                                                    i.fa.fa-chevron-right
+                                                    span.title Comptes
+                                            li.nav-item
+                                                a.nav-link#addAcc(href="javascript:void(0)",data-form="#addAccount")
+                                                    i.fa.fa-chevron-right
+                                                    span.title Ajouter un compte
+                                            li.nav-item
+                                                a.nav-link#editAcc(href="javascript:void(0)",data-form='#editAccount')
+                                                    i.fa.fa-chevron-right
+                                                    span.title Modifier un compte
+                    div#adminOptions
+                        //- All Accounts
+                        section#showContacts.showContacts.position-fixed.bg-light.shadow.p-2
+                            table.table.table-striped
+                                thead
+                                    tr
+                                        th(scope="col") #
+                                        th(scope="col") Username
+                                        th(scope="col") Email 
+                                        th(scope="col") Role 
+                                        th(scope="col") creation
+                                tbody
+                                
+
+                            i.fa.fa-close.text-danger.position-absolute            
+                        //-Add Account
+                        section#addAccount.addAccount.position-fixed.bg-light.shadow.p-2.text-center
+                            form.w-50.mx-auto.pt-2(action='#',method='post')
+                                div.form-group
+                                    input.form-control(type="text", name="username",placeholder="Nom d'utilisateur")
+                                div.form-group 
+                                    input.form-control(type="email", name="email",placeholder='Enter un Email')
+                                div.form-group
+                                    input.form-control(type="password", name="password",placeholder='Enter un mote de passe')
+                                div.form-group
+                                    select.form-control(name='role')
+                                        option(selected disabled) Role
+                                        option(value='1') Admin
+                                        option(value='0') User
+                                div.mb-2.errorsRegister.text-left.p-1.bg-danger
+                                div.form-group
+                                    button.btn.btn-success(type="submit") Valide
+                            i.fa.fa-close.text-danger.position-absolute
+                        //- Edit Account
+                        section#editAccount.editAccount.position-fixed.bg-light.shadow.p-2.text-center
+                            div.form-group.w-50.mx-auto
+                                select.form-control#emailsAccount(name='choice')
+                                form.w-50.mx-auto.pt-2(action='#',method='post')
+                                    div.form-group
+                                        input.form-control(type="text", name="username",placeholder="Nom d'utilisateur")
+                                    div.form-group 
+                                        input.form-control(type="email", name="email",placeholder='Enter un Email')
+                                    div.form-group
+                                        input.form-control(type="password", name="password",placeholder='Enter un mote de passe')
+                                    div.form-group
+                                        select.form-control(name='role')
+                                            option(selected disabled ) Role
+                                            option(value='1') Admin
+                                            option(value='0') User
+                                    div.alert.message.alert-danger
+                                    div.form-group.d-flex.justify-content-around
+                                        button.btn.btn-primary(type="submit",data-type='0') Modifier
+                                        button.btn.btn-danger(type="submit",data-type='1') Supprimer
+
+                            i.fa.fa-close.text-danger.position-absolute
+
+                //- end sidebar menu
+                //-start page content
+                block content
+                //-  end page content
+            //- end page container
+            //- start footer
+            div.page-footer
+                div.page-footer-inner #{new Date().getFullYear()} &copy; Created By
+                    a.makerCss.ml-1(href="mailto:#" target="_top") FSTT Team
+                div.scroll-to-top
+                    i.icon-arrow-up
+            //- end footer 
+        section.overlay.position-fixed
+    //-start js include path
+    //- Jquery
+    script(src="/plugins/jquery/jquery.min.js")
+    script(src="/plugins/jquery-blockui/jquery.blockui.min.js")
+    script(src="/plugins/jquery-slimscroll/jquery.slimscroll.js")
+        //- Popper
+    script(src="/plugins/popper/popper.js")
+        //- bootstrap
+    script(src="plugins/bootstrap/js/bootstrap.min.js")
+    script(src="/plugins/bootstrap-switch/js/bootstrap-switch.min.js")
+        //- sparkline
+    script(src="/plugins/sparkline/jquery.sparkline.js")
+    script(src="/js/sparkline/sparkline-data.js")
+        //- Common js
+    script(src="/js/app.js")
+    script(src="/js/layout.js")
+    script(src="/js/theme-color.js")
+        //- material 
+    script(src="/plugins/material/material.min.js")
+        //- chart js 
+    script(src="/plugins/chart-js/Chart.bundle.js")
+    script(src="/plugins/chart-js/utils.js")
+    script(src="/js/chart/home-data.js")
+        //- summernote 
+    script(src="/plugins/summernote/summernote.js")
+    script(src="/js/summernote/summernote-data.js")
+    block scripts
+
+
+
+

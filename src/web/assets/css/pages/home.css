@@ -1,0 +1,40 @@
+nav {
+  z-index: 10;
+}
+section {
+  border-radius: 10px;
+  transform: translateY(5%);
+}
+section .profile {
+  top: 13px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #fff;
+}
+
+section .form {
+  margin-top: 35%;
+}
+@media (max-width: 1200px) {
+  section .form {
+    margin-top: 50%;
+  }
+}
+@media (max-width: 992px) {
+  section .form {
+    margin-top: 60%;
+  }
+}
+@media (max-width: 768px) {
+  section .form {
+    margin-top: 80%;
+  }
+}
+@media (max-width: 568px) {
+  section .form {
+    margin-top: 100%;
+  }
+}
+.message {
+  display: none;
+}

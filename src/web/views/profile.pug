@@ -1,0 +1,42 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="utf-8")
+        meta(http-equiv="X-UA-Compatible",content="IE=edge")
+        meta(name="viewport",content="width=device-width, initial-scale=1")
+        meta(name="description",content="Dashboard,arcking Contacts")
+        meta(name="author" ,content="fstt")
+        title=user.username
+        //- Font
+        //- link(rel="stylesheet",href="https://fonts.googleapis.com/css2?family=Crimson+Text&display=swap")
+        //- icons 
+        link(rel="stylesheet", href="/fonts/font-awesome/css/font-awesome.min.css")
+        //- bootstrap 
+        link( rel="stylesheet",href="/plugins/bootstrap/css/bootstrap.min.css")
+        link( rel="stylesheet",href="/css/pages/home.css")
+        //- favicon 
+        link(link rel="shortcut icon", href="/img/logo1.png")
+    body
+        nav(aria-label="breadcrumb").position-fixed
+            ol.breadcrumb
+                li.breadcrumb-item
+                    a(href='/dashboard') Dashborad
+                li.breadcrumb-item.active(aria-current="page") Profile
+        //- Account profile
+        section.bg-light.shadow.p-4.w-50.mx-auto.position-relative
+            div
+                form(action='#',method='post')
+                    div.form-group
+                        input.form-control(type="text", name="username",placeholder='Enter Username',value=user.username)
+                    div.form-group 
+                        input.form-control(type="email", name="email",placeholder='Enter Email',value=user.email)
+                    div.form-group
+                        input.form-control(type="password", name="password",placeholder='Enter password',value='')
+                    div.form-group.alert.alert-info=`Role : ${user.status?'Admin':'User'}`
+                    div.form-group.alert.alert-success=`Created at : ${user.createdAt.toDateString()}`
+                    div.alert.message.alert-danger
+                    div.form-group.d-flex.justify-content-around
+                        button.btn.btn-primary(type="submit") Update
+
+    script(src="/plugins/jquery/jquery.min.js")
+    script(src='/js/profile.js')

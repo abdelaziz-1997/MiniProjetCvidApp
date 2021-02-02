@@ -1,0 +1,109 @@
+extends layouts/main-layouts.pug
+
+block content
+                //-start page content
+                div.page-content-wrapper
+                    if user.status
+                        div.page-content.marginSpecific
+                            div.page-bar
+                                div.page-title-breadcrumb
+                                    div.pull-left
+                                        div.page-title Covid-19 Tracker
+                            //- start Users Infected
+                            div.row.position-relative
+                                div.col-md-12.col-sm-12
+                                    div.card.card-box
+                                        div.card-head
+                                            header Liste des personnes infectées
+                                            div.tools
+                                                a.fa.fa-repeat.btn-color.box-refresh.usersTable(href="javascript:;")
+                                                a.t-collapse.btn-color.fa.fa-chevron-down(href="javascript:;")
+                                                a.t-close.btn-color.fa.fa-times(href="javascript:;") 
+                                        div.card-body
+                                            div.table-wrap
+                                                div.table-responsive
+                                                    table.table.display.product-overview.mb-30#support_table
+                                                        thead
+                                                            tr
+                                                                th Nom et Prénom
+                                                                th Email
+                                                                th Numéro de téléphone
+                                                                th Date de détection
+                                                                th Tracker
+                                                                th Options
+                                                        tbody
+                                                            each person,index in contacts
+                                                                tr(data-id=person.uid)
+                                                                    td=person.tracking.UserPersonalInfo.UserName
+                                                                    td=person.tracking.UserPersonalInfo.UserEmail
+                                                                    td=person.phone
+                                                                    td=person.createdAt.toISOString().split('.')[0]
+                                                                    td
+                                                                        if !person.status
+                                                                            span.label.label-sm.label-danger No
+                                                                        else
+                                                                            span.label.label-sm.label-success Yes
+                                                                    td
+                                                                        a.mr-1#options(href="javascript:void(0)",title="Show Options")
+                                                                            i.fa.fa-check
+                                                                        a.text-inverse#delete(href="javascript:void(0)",title="Delete User")
+                                                                            i.fa.fa-trash
+                                //- Start Options
+                                section.options-user.position-absolute.bg-light.shadow.p-4(style="display:none")
+                                    div.d-flex.justify-content-around.align-items-center.h-100
+                                        button.btn.btn-lg.btn-primary#tracking Faire comme suivi
+                                        button.btn.btn-lg.btn-success#contact Obtenir les personnes contacté
+                                    i.fa.fa-close
+                            //- End Options
+                    else
+                        div.page-content
+                            div.page-bar
+                                div.page-title-breadcrumb
+                                    div.pull-left
+                                        div.page-title Covid-19 Tracker
+                           
+                            //- start Users Infected
+                            div.row.position-relative
+                                div.col-md-12.col-sm-12
+                                    div.card.card-box
+                                        div.card-head
+                                            header Liste des personnes infectées
+                                            div.tools
+                                                a.fa.fa-repeat.btn-color.box-refresh.usersTable(href="javascript:;")
+                                                a.t-collapse.btn-color.fa.fa-chevron-down(href="javascript:;")
+                                                a.t-close.btn-color.fa.fa-times(href="javascript:;") 
+                                        div.card-body
+                                            div.table-wrap
+                                                div.table-responsive
+                                                    table.table.display.product-overview.mb-30#support_table
+                                                        thead
+                                                            tr
+                                                                th Nom et Prénom
+                                                                th Email
+                                                                th Numéro de téléphone
+                                                                th Date de détection
+                                                                th Tracker
+                                                                th Options
+                                                        tbody
+                                                            each person,index in contacts
+                                                                tr(data-id=person.uid)
+                                                                    td=person.tracking.UserPersonalInfo.UserName
+                                                                    td=person.tracking.UserPersonalInfo.UserEmail
+                                                                    td=person.phone
+                                                                    td=person.createdAt.toISOString().split('.')[0]
+                                                                    td
+                                                                        if !person.status
+                                                                            span.label.label-sm.label-danger No
+                                                                        else
+                                                                            span.label.label-sm.label-success Yes
+                                                                    td
+                                                                        a.mr-1#options(href="javascript:void(0)",title="Show Options")
+                                                                            i.fa.fa-check
+                                //- Start Options
+                                section.options-user.position-absolute.bg-light.shadow.p-4(style="display:none")
+                                    div.d-flex.justify-content-around.align-items-center.h-100
+                                        button.btn.btn-lg.btn-success#contact Liste des personnes infectées
+                                    i.fa.fa-close
+                            //- End Options
+                        //- End Users Infected
+                //-  end page content

@@ -1,0 +1,195 @@
+extends layouts/main-layouts.pug
+
+block content
+                //-start page content
+                div.page-content-wrapper
+                    if user.status
+                        div.page-content.marginSpecific
+                            div.page-bar
+                                div.page-title-breadcrumb
+                                    div.pull-left
+                                        div.page-title Dashboard
+                            //- start widget
+                            div.state-overview#state-overview
+                                div.row
+                                    div.col-xl-3.col-md-6.col-12
+                                        div.info-box.bg-b-blue
+                                                span.info-box-icon.push-bottom
+                                                    i.material-icons group
+                                                div.info-box-content
+                                                    span.info-box-text Total confirmé
+                                                    span.info-box-number
+                                                    span.progress-description
+                                    div.col-xl-3.col-md-6.col-12
+                                        div.info-box.bg-b-green
+                                                span.info-box-icon.push-bottom
+                                                    i.material-icons favorite
+                                                div.info-box-content
+                                                    span.info-box-text Total récupéré
+                                                    span.info-box-number
+                                                    span.progress-description
+                                    div.col-xl-3.col-md-6.col-12
+                                        div.info-box.bg-b-pink
+                                                span.info-box-icon.push-bottom
+                                                    i.material-icons healing
+                                                div.info-box-content
+                                                    span.info-box-text Total de décès
+                                                    span.info-box-number
+                                                    span.progress-description
+                                    div.col-xl-3.col-md-6.col-12
+                                        div.info-box.bg-b-yellow
+                                            span.info-box-icon.push-bottom
+                                                i.material-icons local_hospital
+                                            div.info-box-content
+                                                span.info-box-text Total des actifs
+                                                span.info-box-number
+                                                span.progress-description
+                            //- end widget 
+                            //- chart start
+                            div.row
+                                div.col-sm-8
+                                    div.card.card-box
+                                        div.card-head
+                                            header Graphique interactif de l'épidémie de COVID-19 au Maroc
+                                            div.tools
+                                                a.fa.fa-repeat.btn-color.box-refresh.pieChart(href="javascript:;")
+                                                a.t-collapse.btn-color.fa.fa-chevron-down(href="javascript:;")
+                                                a.t-close.btn-color.fa.fa-times(href="javascript:;")
+                                        div.card-body.no-padding.height-9
+                                            div.row
+                                                canvas#canvas1
+                                //- circle chart
+                                div.col-sm-4
+                                    div.card.card-box
+                                        div.card-head
+                                            header Graphique interactif des cas
+                                            div.tools
+                                                a.fa.fa-repeat.btn-color.box-refresh.circleChart(href="javascript:;")
+                                                a.t-collapse.btn-color.fa.fa-chevron-down(href="javascript:;")
+                                                a.t-close.btn-color.fa.fa-times(href="javascript:;")
+                                        div.card-body.no-padding.height-9
+                                            div.row
+                                                canvas#chartjs_pie
+                            //- Chart end
+                        
+                    else
+                        div.page-content
+                            div.page-bar
+                                div.page-title-breadcrumb
+                                    div.pull-left
+                                        div.page-title Dashboard
+                            //- start widget
+                            div.state-overview#state-overview
+                                div.row
+                                    div.col-xl-3.col-md-6.col-12
+                                        div.info-box.bg-b-blue
+                                                span.info-box-icon.push-bottom
+                                                    i.material-icons group
+                                                div.info-box-content
+                                                    span.info-box-text Total Confirmed
+                                                    span.info-box-number
+                                                    div.progress
+                                                        div.progress-bar(style="width: 0%;")
+                                                    span.progress-description
+                                    div.col-xl-3.col-md-6.col-12
+                                        div.info-box.bg-b-green
+                                                span.info-box-icon.push-bottom
+                                                    i.material-icons person
+                                                div.info-box-content
+                                                    span.info-box-text Total Recovered
+                                                    span.info-box-number
+                                                    div.progress
+                                                        div.progress-bar(style="width: 0%;")
+                                                    span.progress-description
+                                    div.col-xl-3.col-md-6.col-12
+                                        div.info-box.bg-b-pink
+                                                span.info-box-icon.push-bottom
+                                                    i.material-icons error
+                                                div.info-box-content
+                                                    span.info-box-text Total Deaths
+                                                    span.info-box-number
+                                                    div.progress
+                                                        div.progress-bar(style="width: 0%;")
+                                                    span.progress-description
+                                    div.col-xl-3.col-md-6.col-12
+                                        div.info-box.bg-b-yellow
+                                            span.info-box-icon.push-bottom
+                                                i.material-icons add_alert
+                                            div.info-box-content
+                                                span.info-box-text  Total Actives
+                                                span.info-box-number
+                                                div.progress
+                                                    div.progress-bar(style="width: 0%;")
+                                                span.progress-description
+                            //- end widget 
+                            //- chart start
+                            div.row
+                                div.col-sm-8
+                                    div.card.card-box
+                                        div.card-head
+                                            header Chart of cases
+                                            div.tools
+                                                a.fa.fa-repeat.btn-color.box-refresh.pieChart(href="javascript:;")
+                                                a.t-collapse.btn-color.fa.fa-chevron-down(href="javascript:;")
+                                                a.t-close.btn-color.fa.fa-times(href="javascript:;")
+                                        div.card-body.no-padding.height-9
+                                            div.row
+                                                canvas#canvas1
+                                //- circle chart
+                                div.col-sm-4
+                                    div.card.card-box
+                                        div.card-head
+                                            header Circle Of Cases
+                                            div.tools
+                                                a.fa.fa-repeat.btn-color.box-refresh.circleChart(href="javascript:;")
+                                                a.t-collapse.btn-color.fa.fa-chevron-down(href="javascript:;")
+                                                a.t-close.btn-color.fa.fa-times(href="javascript:;")
+                                        div.card-body.no-padding.height-9
+                                            div.row
+                                                canvas#chartjs_pie
+                            //- Chart end
+                            //- start Users Infected
+                            div.row.position-relative
+                                div.col-md-12.col-sm-12
+                                    div.card.card-box
+                                        div.card-head
+                                            header People Infected List
+                                            div.tools
+                                                a.fa.fa-repeat.btn-color.box-refresh.usersTable(href="javascript:;")
+                                                a.t-collapse.btn-color.fa.fa-chevron-down(href="javascript:;")
+                                                a.t-close.btn-color.fa.fa-times(href="javascript:;") 
+                                        div.card-body
+                                            div.table-wrap
+                                                div.table-responsive
+                                                    table.table.display.product-overview.mb-30#support_table
+                                                        thead
+                                                            tr
+                                                                th Username
+                                                                th Email
+                                                                th PhoneNumber
+                                                                th Date Of Detection
+                                                                th Tracking
+                                                                th Options
+                                                        tbody
+                                                            each person,index in contacts
+                                                                tr(data-id=person.uid)
+                                                                    td=person.tracking.UserPersonalInfo.UserName
+                                                                    td=person.tracking.UserPersonalInfo.UserEmail
+                                                                    td=person.phone
+                                                                    td=person.createdAt.toISOString().split('.')[0]
+                                                                    td
+                                                                        if !person.status
+                                                                            span.label.label-sm.label-danger No
+                                                                        else
+                                                                            span.label.label-sm.label-success Yes
+                                                                    td
+                                                                        a.mr-1#options(href="javascript:void(0)",title="Show Options")
+                                                                            i.fa.fa-check
+                                //- Start Options
+                                section.options-user.position-absolute.bg-light.shadow.p-4(style="display:none")
+                                    div.d-flex.justify-content-around.align-items-center.h-100
+                                        button.btn.btn-lg.btn-success#contact Get Person Contacts
+                                    i.fa.fa-close
+                            //- End Options
+                        //- End Users Infected
+                //-  end page content

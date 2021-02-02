@@ -1,0 +1,42 @@
+{
+  "name": "marocvid",
+  "version": "1.0.0",
+  "description": "This Project For Propagation Of Covid19",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js",
+    "prod": "node index.js",
+    "build": "tsc"
+  },
+  "keywords": [
+    "Maroc",
+    "Covid19"
+  ],
+  "author": "Fstt",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "bootstrap": "^4.5.3",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "express-validator": "^6.5.0",
+    "jquery": "^3.5.1",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.25.3",
+    "mongodb": "^3.5.7",
+    "mongoose": "^5.9.16",
+    "multer": "^1.4.2",
+    "nexmo": "^2.6.0",
+    "node-excel-export": "^1.4.4",
+    "pug": "^2.0.4",
+    "uuid": "^8.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.3"
+  }
+}
